@@ -1,0 +1,9 @@
+.page{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.img-album{
+  width: 300px;
+}

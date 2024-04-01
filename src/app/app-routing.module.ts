@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { InicioComponent } from "./inicio/inicio.component";
+import {AlbumpageComponent} from "./albumpage/albumpage.component";
+
 import { AdminComponent } from "./admin/admin.component";
 import { AlbumComponent } from "./admin/album/album.component";
 import { ArtistaComponent } from "./admin/artista/artista.component";
@@ -27,6 +29,12 @@ import { UsuarioListaComponent } from "./admin/usuario-lista/usuario-lista.compo
 const routes: Routes = [
   { path: '', redirectTo: 'inicio', pathMatch: 'full' },
   { path: 'inicio', component: InicioComponent },
+  { path: 'album/:id', component: AlbumpageComponent},
+
+
+
+
+
   { path: 'admin', component: AdminComponent },
   { path: 'admin/album', component: AlbumComponent },
   { path: 'admin/artista', component: ArtistaComponent },

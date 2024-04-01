@@ -27,6 +27,8 @@ import { ReproduccionComponent } from './admin/reproduccion/reproduccion.compone
 import { SharesComponent } from './admin/shares/shares.component';
 import { TokensComponent } from './admin/tokens/tokens.component';
 import { UsuarioListaComponent } from './admin/usuario-lista/usuario-lista.component';
+import { AlbumpageComponent } from './albumpage/albumpage.component';
+
 
 @NgModule({
   declarations: [
@@ -53,7 +55,8 @@ import { UsuarioListaComponent } from './admin/usuario-lista/usuario-lista.compo
     ReproduccionComponent,
     SharesComponent,
     TokensComponent,
-    UsuarioListaComponent
+    UsuarioListaComponent,
+    AlbumpageComponent
   ],
   imports: [
     BrowserModule,
