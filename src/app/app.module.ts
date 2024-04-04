@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { InicioComponent } from './inicio/inicio.component';
 import { AdminComponent } from './admin/admin.component';
-import {HttpClient, HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from "@angular/common/http";
 import { AlbumComponent } from './admin/album/album.component';
 import { ArtistaComponent } from './admin/artista/artista.component';
 import { CancionComponent } from './admin/cancion/cancion.component';
@@ -28,11 +28,19 @@ import { SharesComponent } from './admin/shares/shares.component';
 import { TokensComponent } from './admin/tokens/tokens.component';
 import { UsuarioListaComponent } from './admin/usuario-lista/usuario-lista.component';
 import { AlbumpageComponent } from './albumpage/albumpage.component';
+import { AuthComponent } from './auth/auth.component';
+import {FormsModule} from "@angular/forms";
+import { AuthGuard } from './injectable/auth-guard';
+import {AuthService} from "./service/auth.service";
+import {AuthInterceptor} from "./injectable/auth.interceptor";
 
 
 @NgModule({
   declarations: [
     AppComponent,
+
+
+
     InicioComponent,
     AdminComponent,
     AlbumComponent,
@@ -56,15 +64,25 @@ import { AlbumpageComponent } from './albumpage/albumpage.component';
     SharesComponent,
     TokensComponent,
     UsuarioListaComponent,
-    AlbumpageComponent
+    AlbumpageComponent,
+    AuthComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     CommonModule,
+    FormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    AuthGuard,
+    AuthService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true // Habilitar la inyección múltiple para los interceptores
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
