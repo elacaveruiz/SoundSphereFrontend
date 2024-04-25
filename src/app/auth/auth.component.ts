@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {AuthService} from "../service/auth.service";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-auth',
@@ -12,7 +13,8 @@ export class AuthComponent {
 
   loginData: any = {};
 
-  constructor(private authService: AuthService) {  }
+  constructor(private authService: AuthService,
+              private router: Router) {  }
 
   register(registroData: any): void {
     this.authService.register(registroData).subscribe(
@@ -33,6 +35,8 @@ export class AuthComponent {
           this.authService.setRole(response.rol);
           this.authService.setUser(response.idLogin);
           console.log('Usuario logeado correctamente:', response);
+
+          this.router.navigate(['/inicio']);
         } else {
           console.error('El token no se recibió del backend.');
         }

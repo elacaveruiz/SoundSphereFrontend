@@ -1,22 +1,16 @@
 <div class="non-listen">
-  <div class="despl">
-    <div class="despl-paginas">
-      <div class="opc-pag"> <img class="icon" src="assets/images/home.webp"><a>Inicio</a></div>
-      <div class="opc-pag"> <img class="icon" src="assets/images/lupa.png"><a>Buscar</a></div>
-    </div>
-    <div class="biblioteca">
-      <div class="bibl-top">
-        <img src="">
-        <h3>Tus listas</h3>
-        <button>Buscar</button>
-      </div>
-      <div class="playlists">
-      </div>
-    </div>
-  </div>
+  <app-lateral></app-lateral>
+
   <div class="content">
     <div class="fav-artista">
       <h2>Tus Artistas Favoritos</h2>
+      <div class="artista-grid" [style.gridTemplateColumns]="'repeat(auto-fill, minmax(200px, 1fr))'">
+      <div class="artista" *ngFor="let artista of artistasFav">
+          <!-- Mostrar la imagen del artista aquí -->
+          <img [src]="artista.urlImagen" class="img-artista">
+          <p><b><a [routerLink]="['/artista', artista.id]">{{ artista.nombre }}</a></b></p>
+        </div>
+      </div>
     </div>
 
 

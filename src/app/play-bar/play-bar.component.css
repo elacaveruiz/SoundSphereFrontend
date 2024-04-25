@@ -1,0 +1,37 @@
+.player-bar {
+  max-height: 10vh;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #2c2733;
+  color: white;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.box {
+  display: flex;
+  flex: 1; /* Hace que todos los elementos tengan el mismo tamaño */
+  border: 1px solid black; /* Añade un borde para visualizar los límites de cada div */
+  margin: 0 5px; /* Añade un margen entre los elementos */
+  align-items: center;
+  text-align: center;
+  justify-content: space-around;
+}
+
+.icon{
+  width: 20px;
+  transition-duration: 0.3s;
+}
+.icon:hover{
+  width: 25px;
+  transition-duration: 0.3s;
+}
+
+.btn{
+  background: none;
+  border: none;
+  height: fit-content;
+}

@@ -1,0 +1,23 @@
+<div class="player-bar">
+  <div class="box">
+    <p>{{ currentSong.titulo }}</p>
+    <p>
+      <!-- Usar un ngFor para mostrar los nombres de los artistas -->
+      <ng-container *ngFor="let artista of currentSong.artistas; let last = last">
+        <a [routerLink]="['/artista', artista.nombre]">{{ artista.nombre }}</a>{{ !last ? ', ' : '' }}
+      </ng-container>
+    </p>
+  </div>
+
+  <div class="box">
+    <button (click)="previous()" class="btn"><img src="/assets/images/previous.png" class="icon"></button>
+    <button (click)="play()" class="btn"><img src="/assets/images/play.png" class="icon"></button>
+    <button (click)="next()" class="btn"><img src="/assets/images/next.png" class="icon"></button>
+  </div>
+
+  <audio #audioPlayer controls style="display: none;"></audio>
+
+  <div class="box">
+
+  </div>
+</div>

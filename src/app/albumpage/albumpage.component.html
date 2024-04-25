@@ -1,13 +1,37 @@
-<div class="page">
-  <div class="portada">
-    <h4>Álbum</h4>
-    <h1>{{albumData.titulo}}</h1>
-    <img class="img-album" [src]="albumData.urlImagen">
+<div class="non-listen">
+<app-lateral></app-lateral>
+
+  <div class="page">
+    <div class="portada">
+      <h1>{{albumData.titulo}}</h1>
+      <img class="img-album" [src]="albumData.urlImagen">
+      <div class="info-artists">
+        <ng-container *ngFor="let artista of artistas; let last = last">
+          <div class="artist-cont">
+            <img [src]="artista.urlImagen" class="artist-image">
+            <h4>{{ artista.nombre }}</h4>
+          </div>
+        </ng-container>
+      </div>
   </div>
-  <div class="canciones">
-    <h5>Canciones</h5>
-    <h1>{{albumData.titulo}}</h1>
-    <img class="img-album" [src]="albumData.urlImagen">
+    <div class="canciones">
+      <h3>Canciones</h3>
+      <div *ngFor="let cancion of canciones">
+        <div class="song-container">
+          <p><strong> {{ cancion.titulo }}</strong></p>
+          <div class="song-duration">
+            <p>
+              <!-- Usar un ngFor para mostrar los nombres de los artistas -->
+              <ng-container *ngFor="let artista of cancion.artistas; let last = last">
+                <a [routerLink]="['/artista', artista.nombre]">{{ artista.nombre }}</a>{{ !last ? ', ' : '' }}
+              </ng-container>
+            </p>
+            <p> {{ convertirSegundosAMinutos(cancion.duracion) }}</p>
+            <button (click)="sendSong(cancion)"><img src="assets/images/play.png" class="icon"></button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 

@@ -33,6 +33,9 @@ import {FormsModule} from "@angular/forms";
 import { AuthGuard } from './injectable/auth-guard';
 import {AuthService} from "./service/auth.service";
 import {AuthInterceptor} from "./injectable/auth.interceptor";
+import { PlayBarComponent } from './play-bar/play-bar.component';
+import { LateralComponent } from './lateral/lateral.component';
+import {SongService} from "./service/song.service";
 
 
 @NgModule({
@@ -65,7 +68,9 @@ import {AuthInterceptor} from "./injectable/auth.interceptor";
     TokensComponent,
     UsuarioListaComponent,
     AlbumpageComponent,
-    AuthComponent
+    AuthComponent,
+    PlayBarComponent,
+    LateralComponent
   ],
   imports: [
     BrowserModule,
@@ -77,6 +82,7 @@ import {AuthInterceptor} from "./injectable/auth.interceptor";
   providers: [
     AuthGuard,
     AuthService,
+    SongService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
