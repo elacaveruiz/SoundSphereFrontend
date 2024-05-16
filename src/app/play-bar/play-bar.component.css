@@ -1,5 +1,6 @@
 .player-bar {
-  max-height: 10vh;
+  max-height: 9vh;
+  min-height: 9vh;
   position: fixed;
   bottom: 0;
   left: 0;
@@ -14,11 +15,19 @@
 .box {
   display: flex;
   flex: 1; /* Hace que todos los elementos tengan el mismo tamaño */
-  border: 1px solid black; /* Añade un borde para visualizar los límites de cada div */
   margin: 0 5px; /* Añade un margen entre los elementos */
   align-items: center;
   text-align: center;
-  justify-content: space-around;
+  justify-content: space-evenly;
+}
+
+.song-title{
+  text-decoration: none;
+  color: white;
+}
+
+.img-album{
+  width: 70px;
 }
 
 .icon{
@@ -34,4 +43,46 @@
   background: none;
   border: none;
   height: fit-content;
+}
+
+.artist_url{
+  text-decoration: none;
+  color: #c2c2c2;
+}
+
+.box-volume{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.custom-volume-slider {
+  margin-left: 5px;
+  -webkit-appearance: none;
+  width: 100%;
+  height: 4px; /* Altura de la barra de volumen */
+  background: #623c6c; /* Color de fondo gris oscuro */
+  outline: none;
+  opacity: 0.9;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+.custom-volume-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12px; /* Ancho del control deslizante */
+  height: 12px; /* Altura del control deslizante */
+  background: #a25fb4; /* Color del control deslizante */
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.custom-volume-slider::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  background: #fff;
+  cursor: pointer;
+  border-radius: 50%;
 }

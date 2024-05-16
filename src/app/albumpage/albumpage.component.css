@@ -43,6 +43,10 @@
   margin-top: 5px;
 }
 
+.canciones{
+  width: 400px;
+}
+
 .song-container{
   width: 100%;
   display: flex;

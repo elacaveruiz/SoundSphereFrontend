@@ -16,8 +16,12 @@ canciones: any[] = [];
 artistas: any[] = [];
 albumId!: number;
 
-  sendSong(song: any): void{
-    this.songService.sendSong(song);
+  sendSong(song: any): void {
+    const dataToSend = {
+      selectedSong: song,
+      playlist: this.canciones
+    };
+    this.songService.sendSong(dataToSend);
   }
 
   constructor(private route: ActivatedRoute,
@@ -47,11 +51,13 @@ albumId!: number;
       }
     );
   }
-  getAlbumSongs(albumId: number): void{
+  getAlbumSongs(albumId: number): void {
     this.http.get<any>('http://localhost:8080/cancion/album/' + albumId).subscribe(
       canciones => {
-        console.log('Canciones del álbum:', canciones);
-        this.canciones = canciones;
+        console.log('Canciones del álbum sin ordenar:', canciones);
+        // Ordenar las canciones por su id en orden ascendente
+        this.canciones = canciones.sort((a: any, b: any) => a.id - b.id);
+        console.log('Canciones del álbum ordenadas:', this.canciones);
       },
       error => {
         console.error('Error al obtener las canciones del álbum:', error);

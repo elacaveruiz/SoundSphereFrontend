@@ -1,23 +1,31 @@
 <div class="player-bar">
   <div class="box">
-    <p>{{ currentSong.titulo }}</p>
+    <img [src]="currentSong.urlImagenAlbum" class="img-album">
+    <div class="text">
+    <strong>
+      <a class="song-title" [routerLink]="['/album', currentSong.idAlbum]"><p>{{ currentSong.titulo }}</p></a>
+    </strong>
     <p>
       <!-- Usar un ngFor para mostrar los nombres de los artistas -->
       <ng-container *ngFor="let artista of currentSong.artistas; let last = last">
-        <a [routerLink]="['/artista', artista.nombre]">{{ artista.nombre }}</a>{{ !last ? ', ' : '' }}
+        <a class="artist_url" [routerLink]="['/artista', artista.nombre]">{{ artista.nombre }}</a>{{ !last ? ', ' : '' }}
       </ng-container>
     </p>
   </div>
+</div>
 
   <div class="box">
-    <button (click)="previous()" class="btn"><img src="/assets/images/previous.png" class="icon"></button>
-    <button (click)="play()" class="btn"><img src="/assets/images/play.png" class="icon"></button>
-    <button (click)="next()" class="btn"><img src="/assets/images/next.png" class="icon"></button>
+    <button (click)="playPrevious()" class="btn"><img src="/assets/images/previous.png" class="icon"></button>
+    <button (click)="togglePlayPause()" class="btn">  <img [src]="isPlaying ? '/assets/images/pause.png' : '/assets/images/play.png'" class="icon"></button>
+    <button (click)="playNext()" class="btn"><img src="/assets/images/next.png" class="icon"></button>
   </div>
 
   <audio #audioPlayer controls style="display: none;"></audio>
 
   <div class="box">
-
+    <div class="box-volume">
+      <img [src]="volume !== undefined ? getVolumeIcon() : '/assets/images/vol0.png'" class="icon" (click)="toggleVolume()">
+    <input type="range" min="0" max="1" step="0.01" [(ngModel)]="volume" (input)="adjustVolume()" class="custom-volume-slider">
+  </div>
   </div>
 </div>
