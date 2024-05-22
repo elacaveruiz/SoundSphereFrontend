@@ -16,12 +16,18 @@ export class PlayBarComponent {
   volume: number = 0.5; // Volumen inicial
   @ViewChild('audioPlayer') audioPlayerRef!: ElementRef;
 
+
+  progress: number = 0; // Progreso de la reproducción
+  currentTime: number = 0; // Tiempo actual de la reproducción en segundos
+  duration: number = 0; // Duración total de la canción en segundos
+
   constructor(private songService: SongService,
               private http: HttpClient) {
     this.songService.data$.subscribe(data => {
       console.log('Datos recibidos en PlayBarComponent:', data);
       this.currentSong = data.selectedSong;
       this.songs = data.playlist;
+      this.duration = this.currentSong.duracion
       this.play();
     });
   }
@@ -34,6 +40,17 @@ export class PlayBarComponent {
         audioPlayer.play(); // Iniciar la reproducción si la canción está lista y se está reproduciendo
       }
     });
+
+    audioPlayer.addEventListener('ended', () => {
+      this.playNext();
+    });
+
+
+    // Evento para actualizar la barra de progreso
+    audioPlayer.addEventListener('timeupdate', () => {
+      this.currentTime = audioPlayer.currentTime;
+      this.progress = (audioPlayer.currentTime / audioPlayer.duration) * 100;
+    });
   }
 
   play(): void {
@@ -42,7 +59,7 @@ export class PlayBarComponent {
       audioPlayer.src = `assets/music/${this.currentSong.id}.mp3`;
       audioPlayer.load(); // Cargar el archivo de audio
       this.isPlaying = true; // Actualizar el estado de reproducción
-
+      audioPlayer.play();
       this.registerPlayback(this.currentSong.id);
     } else {
       console.error('No se encontró la URL del archivo de audio.');
@@ -51,8 +68,8 @@ export class PlayBarComponent {
 
   pause(): void {
     const audioPlayer: HTMLAudioElement = this.audioPlayerRef.nativeElement;
-    audioPlayer.pause(); // Pausar la reproducción
-    this.isPlaying = false; // Actualizar el estado de reproducción
+    audioPlayer.pause();
+    this.isPlaying = false;
   }
 
   togglePlayPause(): void {
@@ -71,12 +88,8 @@ export class PlayBarComponent {
       const currentIndex = this.songs.findIndex(song => song.id === this.currentSong.id);
       const nextIndex = (currentIndex + 1) % this.songs.length; // Obtener el índice de la siguiente canción
       this.currentSong = this.songs[nextIndex]; // Actualizar la canción actual
-
-    if (nextIndex === 0 && !this.isPlaying) {
-        this.play();
-      } else {
-        this.play();
-      }
+      this.duration = this.currentSong.duracion;
+      this.play();
     }
   }
 
@@ -85,6 +98,7 @@ export class PlayBarComponent {
       const currentIndex = this.songs.findIndex(song => song.id === this.currentSong.id);
       const previousIndex = (currentIndex - 1 + this.songs.length) % this.songs.length; // Obtener el índice de la canción anterior
       this.currentSong = this.songs[previousIndex]; // Actualizar la canción actual
+      this.duration = this.currentSong.duracion;
 
       if (previousIndex === this.songs.length - 1 && !this.isPlaying) {
         this.play();
@@ -135,5 +149,22 @@ export class PlayBarComponent {
     }
     const audioPlayer: HTMLAudioElement = this.audioPlayerRef.nativeElement;
     audioPlayer.volume = this.volume; // Establecer el volumen real del reproductor de audio
+  }
+
+
+  seek(event: any): void {
+    const audioPlayer: HTMLAudioElement = this.audioPlayerRef.nativeElement;
+    const seekTime = (event.target.value / 100) * audioPlayer.duration;
+    audioPlayer.currentTime = seekTime;
+  }
+
+  formatTime(seconds: number): string {
+    const minutes: number = Math.floor(seconds / 60);
+    const secs: number = Math.floor(seconds % 60);
+    return `${this.padZero(minutes)}:${this.padZero(secs)}`;
+  }
+
+  padZero(value: number): string {
+    return value < 10 ? `0${value}` : value.toString();
   }
 }

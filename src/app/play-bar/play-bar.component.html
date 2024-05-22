@@ -15,17 +15,28 @@
 </div>
 
   <div class="box">
-    <button (click)="playPrevious()" class="btn"><img src="/assets/images/previous.png" class="icon"></button>
-    <button (click)="togglePlayPause()" class="btn">  <img [src]="isPlaying ? '/assets/images/pause.png' : '/assets/images/play.png'" class="icon"></button>
-    <button (click)="playNext()" class="btn"><img src="/assets/images/next.png" class="icon"></button>
+    <div class="control">
+      <div class="progress-bar-container">
+        <input type="range" min="0" max="100" [value]="progress" (input)="seek($event)" class="progress-bar">
+        </div>
+      <div class="btn-control">
+        <span class="current-time">{{ formatTime(currentTime) }}</span>
+        <button (click)="playPrevious()" class="btn"><img src="/assets/images/previous.png" class="icon"></button>
+        <button (click)="togglePlayPause()" class="btn">  <img [src]="isPlaying ? '/assets/images/pause.png' : '/assets/images/play.png'" class="icon"></button>
+        <button (click)="playNext()" class="btn"><img src="/assets/images/next.png" class="icon"></button>
+        <span class="total-duration">{{ formatTime(duration) }}</span>
+      </div>
+    </div>
   </div>
 
   <audio #audioPlayer controls style="display: none;"></audio>
 
   <div class="box">
-    <div class="box-volume">
-      <img [src]="volume !== undefined ? getVolumeIcon() : '/assets/images/vol0.png'" class="icon" (click)="toggleVolume()">
-    <input type="range" min="0" max="1" step="0.01" [(ngModel)]="volume" (input)="adjustVolume()" class="custom-volume-slider">
+
+      <div class="box-volume">
+        <img [src]="volume !== undefined ? getVolumeIcon() : '/assets/images/vol0.png'" class="icon" (click)="toggleVolume()">
+      <input type="range" min="0" max="1" step="0.01" [(ngModel)]="volume" (input)="adjustVolume()" class="custom-volume-slider">
+      </div>
+    </div>
   </div>
-  </div>
-</div>
+

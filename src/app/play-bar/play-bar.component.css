@@ -50,6 +50,28 @@
   color: #c2c2c2;
 }
 
+.control{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.progress-bar-container{
+  width: 100%;
+}
+
+.progress-bar-container input{
+  width: 100%;
+}
+
+.btn-control{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
 .box-volume{
   display: flex;
   flex-direction: row;
