@@ -14,9 +14,13 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
-  register(userData: any): Observable<any> {
-    userData.rol = "USUARIO";
-    return this.http.post<any>(`${this.baseUrl}/register`, userData);
+  register(registroData: any): Observable<any> {
+    registroData.rol = "USUARIO";
+    return this.http.post<any>(`${this.baseUrl}/register`, registroData);
+  }
+
+  createUser(userData: any): Observable<any> {
+    return this.http.post<any>('http://localhost:8080/user/create', userData);
   }
 
   login(credentials: any): Observable<any> {
@@ -50,6 +54,7 @@ export class AuthService {
   getUser(): string | null {
     return localStorage.getItem(this.authUserKey); // Obtener el rol del localStorage
   }
+
 
   isAuthenticated(): boolean {
     const token = localStorage.getItem('token');

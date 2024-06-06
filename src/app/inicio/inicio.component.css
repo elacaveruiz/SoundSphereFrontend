@@ -108,5 +108,20 @@ a:hover{
 }
 
 .img-artista {
-  width: 100%; /* Para asegurar que la imagen se ajuste al tamaño del contenedor */
+  width: 100%;
+  height: auto; /* Permite que la altura de la imagen se ajuste automáticamente */
+  max-width: 100%; /* Limita la anchura de la imagen al 100% del contenedor */
+  aspect-ratio: 1 / 1; /* Esto mantiene la relación de aspecto 1:1 */
+  object-fit: cover; /* Recorta la imagen para que se ajuste al contenedor */
+}
+
+.show-more{
+  font-size: smaller;
+  color: white;
+  transition-duration: 0.3s;
+}
+
+.show-more:hover{
+  color: #c2c2c2;
+  transition-duration: 0.3s;
 }

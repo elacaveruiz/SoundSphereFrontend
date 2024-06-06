@@ -2,6 +2,7 @@
   <div class="despl-paginas">
     <div class="opc-pag" routerLink="/inicio"> <img class="icon" src="assets/images/home.webp"><a>Inicio</a></div>
     <div class="opc-pag"> <img class="icon" src="assets/images/lupa.png"><a>Buscar</a></div>
+    <div class="opc-pag"> <img class="icon" src="assets/images/profile.png"><a>Mi perfil</a></div>
   </div>
   <div class="biblioteca">
     <div class="bibl-top">
@@ -9,6 +10,9 @@
       <h3>Tus listas</h3>
     </div>
     <div class="playlists">
+      <div *ngFor="let lista of listas" class="playlist-item">
+        <p><a [routerLink]="['/lista', lista.id]">{{ lista.titulo }}</a></p>
+      </div>
     </div>
   </div>
 </div>

@@ -5,6 +5,10 @@
   flex-direction: row;
 }
 
+.portada h1{
+  max-width: 300px;
+}
+
 .page{
   width: 100%;
   max-height: 100%;
@@ -16,6 +20,7 @@
   flex-direction: row;
   justify-content: space-around;
   margin-bottom: 5vh;
+  overflow-x: hidden;
 }
 
 .img-album{
@@ -76,4 +81,11 @@
 .icon{
   width: 10px;
   height: 10px;
+  transition-duration: 0.3s;
+}
+
+.icon:hover {
+  width: 13px;
+  height: 13px;
+  transition-duration: 0.3s;
 }

@@ -10,21 +10,35 @@ import { Router } from '@angular/router';
 export class AuthComponent {
 
   registroData: any = {};
+  userData: any =  {};
 
   loginData: any = {};
 
   constructor(private authService: AuthService,
               private router: Router) {  }
 
-  register(registroData: any): void {
+  register(registroData: any, userData: any): void {
     this.authService.register(registroData).subscribe(
       response => {
         console.log('Usuario registrado correctamente:', response);
+        const idLogin = response.idLogin;
+        userData.loginId = idLogin;
+
+        console.log(userData);
+        this.authService.createUser(userData).subscribe(
+          response => {
+            console.log('Perfil creado correctamente:', response);
+          },
+          error => {
+            console.error('Error al crear el perfil:', error);
+          }
+        );
       },
       error => {
         console.error('Error al registrar el usuario:', error);
       }
     );
+
   }
 
   login(loginData: any): void {
@@ -34,6 +48,7 @@ export class AuthComponent {
           this.authService.setAuthToken(response.token);
           this.authService.setRole(response.rol);
           this.authService.setUser(response.idLogin);
+          localStorage.setItem('profile', response.idUser)
           console.log('Usuario logeado correctamente:', response);
 
           this.router.navigate(['/inicio']);

@@ -1,6 +1,16 @@
 <div>
   <h2>Registro</h2>
-  <form (ngSubmit)="register(registroData)">
+  <form (ngSubmit)="register(registroData, userData)">
+    <input type="text" [(ngModel)]="userData.nombre" name="name" placeholder="Nombre">
+    <input type="text" [(ngModel)]="userData.apellidos" name="surname" placeholder="Apellidos">
+    <input type="date" [(ngModel)]="userData.fechaNacimiento" name="birthdate" placeholder="Fecha de Nacimiento">
+    <select [(ngModel)]="userData.sexo" name="gender">
+      <option value="" disabled selected>Seleccione su género</option>
+      <option value="HOMBRE">Hombre</option>
+      <option value="MUJER">Mujer</option>
+      <option value="NOBINARIO">No binario</option>
+      <option value="NOESPECIFICADO">No especificado</option>
+    </select>
     <input type="text" [(ngModel)]="registroData.username" name="username" placeholder="Nombre de usuario">
     <input type="password" [(ngModel)]="registroData.password" name="password" placeholder="Contraseña">
     <button type="submit">Registrarse</button>

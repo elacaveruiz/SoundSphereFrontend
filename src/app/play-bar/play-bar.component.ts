@@ -13,7 +13,7 @@ export class PlayBarComponent {
   currentSong: any;
   songs: any[] = [];
   isPlaying: boolean = false;
-  volume: number = 0.5; // Volumen inicial
+  volume: number = 1; // Volumen inicial
   @ViewChild('audioPlayer') audioPlayerRef!: ElementRef;
 
 
