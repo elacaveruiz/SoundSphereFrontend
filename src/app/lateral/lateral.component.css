@@ -20,6 +20,7 @@
   padding: 8px 0px;
   border-radius: 20px;
   transition-duration: 0.3s;
+  cursor: default;
 }
 
 .opc-pag:hover{

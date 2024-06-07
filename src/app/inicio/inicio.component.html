@@ -2,18 +2,6 @@
   <app-lateral></app-lateral>
 
   <div class="content">
-    <div class="fav-artista">
-      <h2>Tus Artistas Favoritos</h2>
-      <div class="artista-grid" [style.gridTemplateColumns]="'repeat(auto-fill, minmax(200px, 1fr))'">
-      <div class="artista" *ngFor="let artista of artistasFav.slice(0, showAll ? novedades.length : 4)">
-          <!-- Mostrar la imagen del artista aquí -->
-          <img [src]="artista.urlImagen" class="img-artista">
-          <p><b><a [routerLink]="['/artista', artista.id]">{{ artista.nombre }}</a></b></p>
-        </div>
-      </div>
-      <p class="show-more" (click)="showAll = !showAll" *ngIf="novedades.length > 4">{{ showAll ? 'Ver menos' : 'Ver más' }}</p>
-    </div>
-
 
     <div class="novedades">
       <h2>Novedades</h2>
@@ -28,6 +16,18 @@
               <a [routerLink]="['/artista', artista.id]">{{ artista.nombre }}</a>{{ !last ? ', ' : '' }}
             </ng-container>
           </p>
+        </div>
+      </div>
+      <p class="show-more" (click)="showAll = !showAll" *ngIf="novedades.length > 4">{{ showAll ? 'Ver menos' : 'Ver más' }}</p>
+    </div>
+
+    <div class="fav-artista">
+      <h2>Tus Artistas Favoritos</h2>
+      <div class="artista-grid" [style.gridTemplateColumns]="'repeat(auto-fill, minmax(200px, 1fr))'">
+        <div class="artista" *ngFor="let artista of artistasFav.slice(0, showAll ? novedades.length : 4)">
+          <!-- Mostrar la imagen del artista aquí -->
+          <img [src]="artista.urlImagen" class="img-artista">
+          <p><b><a [routerLink]="['/artista', artista.id]">{{ artista.nombre }}</a></b></p>
         </div>
       </div>
       <p class="show-more" (click)="showAll = !showAll" *ngIf="novedades.length > 4">{{ showAll ? 'Ver menos' : 'Ver más' }}</p>

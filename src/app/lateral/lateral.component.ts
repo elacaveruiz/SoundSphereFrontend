@@ -8,6 +8,7 @@ import {HttpClient} from "@angular/common/http";
 })
 export class LateralComponent implements OnInit{
 
+  userId!: number;
   listas: any[] = [];
 
   constructor(private http: HttpClient) {
@@ -15,6 +16,8 @@ export class LateralComponent implements OnInit{
 
   ngOnInit(): void {
   this.getUserPlaylists()
+    this.userId = parseInt(localStorage.getItem('profile') || '0', 10);
+
   }
 
   getUserPlaylists(): void{

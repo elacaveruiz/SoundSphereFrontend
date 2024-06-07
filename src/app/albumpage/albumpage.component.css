@@ -5,10 +5,6 @@
   flex-direction: row;
 }
 
-.portada h1{
-  max-width: 300px;
-}
-
 .page{
   width: 100%;
   max-height: 100%;
@@ -21,6 +17,10 @@
   justify-content: space-around;
   margin-bottom: 5vh;
   overflow-x: hidden;
+}
+
+.portada h1{
+  max-width: 300px;
 }
 
 .img-album{
@@ -49,7 +49,15 @@
 }
 
 .canciones{
-  width: 400px;
+  width: 450px;
+  margin-left: -30px;
+}
+
+.song-buttons{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  min-width: 60%;
 }
 
 .song-container{
@@ -71,7 +79,7 @@
 }
 
 .song-duration{
-  min-width: 40%;
+  min-width: 30%;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -79,8 +87,8 @@
 }
 
 .icon{
-  width: 10px;
-  height: 10px;
+  width: 15px;
+  height: 15px;
   transition-duration: 0.3s;
 }
 

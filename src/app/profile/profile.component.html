@@ -1,1 +1,14 @@
-<p>profile works!</p>
+<div class="non-listen">
+  <app-lateral></app-lateral>
+    <div class="page">
+      <div class="profile">
+        <img class="img-profile" [src]="userData.urlImagen">
+        <h1>{{userData.nombre}} {{userData.apellidos}}</h1>
+
+        <button *ngIf="isOwnProfile" (click)="goToEditProfile()" class="btn-edit-profile">Editar perfil</button>
+        <button *ngIf="!isOwnProfile && !isFollowing" (click)="toggleFollow()" class="btn-follow">Seguir</button>
+        <button *ngIf="!isOwnProfile && isFollowing" (click)="toggleFollow()" class="btn-following">Siguiendo</button>
+
+      </div>
+    </div>
+</div>

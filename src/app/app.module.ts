@@ -17,6 +17,7 @@ import {SongService} from "./service/song.service";
 import { ArtistapageComponent } from './artistapage/artistapage.component';
 import { ProfileComponent } from './profile/profile.component';
 import { PlaylistComponent } from './playlist/playlist.component';
+import { LikesComponent } from './likes/likes.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { PlaylistComponent } from './playlist/playlist.component';
     LateralComponent,
     ArtistapageComponent,
     ProfileComponent,
-    PlaylistComponent
+    PlaylistComponent,
+    LikesComponent
   ],
   imports: [
     BrowserModule,
