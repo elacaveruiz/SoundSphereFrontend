@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {ActivatedRoute} from "@angular/router";
 import {SongService} from "../service/song.service";
-import {Song} from "../service/interface";
 
 @Component({
   selector: 'app-albumpage',
@@ -15,6 +14,10 @@ albumData: any;
 canciones: any[] = [];
 artistas: any[] = [];
 albumId!: number;
+showDropdown: boolean = false;
+selectedCancionId: number | null = null;
+playlists: any[] = [];
+newPlaylistTitle: string = '';
 
   sendSong(song: any): void {
     const dataToSend = {
@@ -36,6 +39,7 @@ albumId!: number;
       this.getAlbumDetails(this.albumId);
       this.getAlbumSongs(this.albumId);
       this.getAlbumArtists(this.albumId);
+      this.loadPlaylists();
     });
   }
 
@@ -87,5 +91,78 @@ albumId!: number;
 
     // Devolver el resultado en formato "mm:ss"
     return minutosFormateados + ':' + segundosFormateados;
+  }
+
+  openPlaylistDropdown(cancionId: number) {
+    this.selectedCancionId = cancionId;
+    this.showDropdown = true;
+  }
+
+  closePlaylistDropdown() {
+    this.showDropdown = false;
+    this.selectedCancionId = null;
+  }
+
+  loadPlaylists() {
+    const userId = localStorage.getItem('profile');
+    this.http.get<any[]>(`http://localhost:8080/playlist/user/${userId}`).subscribe(
+      playlists => {
+        this.playlists = playlists;
+      },
+      error => {
+        console.error('Error al cargar las playlists:', error);
+      }
+    );
+  }
+
+  onPlaylistSelected(event: any) {
+    const selectedPlaylistId = event.target.value;
+    if (selectedPlaylistId && this.selectedCancionId !== null) {
+      const data = {
+        idLista: selectedPlaylistId,
+        idCancion: this.selectedCancionId
+      };
+      this.http.post('http://localhost:8080/playlist/add', data).subscribe(
+        response => {
+          console.log('Canción añadida a la playlist:', response);
+          this.closePlaylistDropdown();
+        },
+        error => {
+          console.error('Error al añadir la canción a la playlist:', error);
+        }
+      );
+    }
+  }
+
+
+  createAndAddToNewPlaylist() {
+    if (this.selectedCancionId !== null && this.newPlaylistTitle.trim()) {
+      const newPlaylist = {
+        titulo: this.newPlaylistTitle,
+        idUsuario: localStorage.getItem('profile')
+      };
+      this.http.post('http://localhost:8080/playlist/create', newPlaylist).subscribe(
+        (response: any) => {
+          console.log('Nueva playlist creada:', response);
+          const data = {
+            idLista: response.id,
+            idCancion: this.selectedCancionId
+          };
+          this.http.post('http://localhost:8080/playlist/add', data).subscribe(
+            addResponse => {
+              console.log('Canción añadida a la nueva playlist:', addResponse);
+              this.closePlaylistDropdown();
+              this.loadPlaylists();
+            },
+            error => {
+              console.error('Error al añadir la canción a la nueva playlist:', error);
+            }
+          );
+        },
+        error => {
+          console.error('Error al crear la nueva playlist:', error);
+        }
+      );
+    }
   }
 }

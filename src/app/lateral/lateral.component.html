@@ -5,10 +5,7 @@
     <div class="opc-pag" [routerLink]="['/perfil', userId]"> <img class="icon" src="assets/images/profile.png"><a>Mi perfil</a></div>
   </div>
   <div class="biblioteca">
-    <div class="bibl-top">
-      <img src="">
-      <h3>Tus listas</h3>
-    </div>
+    <h3>Tus listas</h3>
     <div class="playlists">
       <div *ngFor="let lista of listas" class="playlist-item">
         <p><a [routerLink]="['/lista', lista.id]">{{ lista.titulo }}</a></p>
