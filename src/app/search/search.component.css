@@ -3,19 +3,19 @@
   display: flex;
   flex-direction: row;
 }
-
 .content{
   width: 69%;
   max-height: 100%;
   overflow-y: auto; /* Agregar scroll vertical si es necesario */
   margin-left: 1%;
-  background: linear-gradient(to bottom, #623c6c, #2c2733);
+  background: rgb(44, 39, 51);
   display: flex;
   flex-direction: column;
   padding: 20px;
   border-radius: 20px;
   margin-bottom: 5vh;
 }
+
 .album-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -63,6 +63,30 @@ a:hover{
   aspect-ratio: 1 / 1; /* Esto mantiene la relación de aspecto 1:1 */
   object-fit: cover; /* Recorta la imagen para que se ajuste al contenedor */
 }
+.btn-search{
+  background-color: rgb(33, 29, 38);
+  border-radius: 100px 0 0 100px ;
+  border: none;
+  padding: 10px 10px 10px 20px;
+  height: 52px;
+}
+.search-container{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 50px;
+}
+
+.search-container input{
+  background-color: #211d26;
+  color: white;
+  border: none;
+  font-size: medium;
+  border-radius:  0 100px 100px 0;
+  height: 100%;
+  padding-right: 15px;
+  outline: none;
+}
 
 .show-more{
   font-size: smaller;
@@ -74,4 +98,70 @@ a:hover{
 .show-more:hover{
   color: #c2c2c2;
   transition-duration: 0.3s;
+  cursor: pointer;
+}
+
+.canciones{
+  width: 450px;
+  margin-left: -30px;
+  align-items: center;
+}
+
+.song-buttons{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  min-width: 60%;
+  gap: 10px;
+}
+
+.song-container{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  background-color: #211d26;
+  margin-top: 10px;
+  margin-left: 30px;
+  border-radius: 15px;
+  padding: 20px;
+  justify-content: space-between;
+  font-size: small;
+  align-items: center;
+  text-align: left;
+}
+
+.song-container a{
+  text-decoration: none;
+  color: #cccccc;
+  font-size: smaller;
+  margin-top: -30px;
+}
+
+.song-duration{
+  min-width: 30%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.icon{
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.img-album-song{
+  width: 70px;
+}
+.song-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
+}
+
+.song-title{
+  margin-bottom: -10px;
 }

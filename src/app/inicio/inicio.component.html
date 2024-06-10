@@ -30,7 +30,6 @@
           <p><b><a [routerLink]="['/artista', artista.id]">{{ artista.nombre }}</a></b></p>
         </div>
       </div>
-      <p class="show-more" (click)="showAll = !showAll" *ngIf="novedades.length > 4">{{ showAll ? 'Ver menos' : 'Ver más' }}</p>
     </div>
 
     <div class="listas">

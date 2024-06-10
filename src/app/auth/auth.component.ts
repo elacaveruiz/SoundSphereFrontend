@@ -9,6 +9,8 @@ import { Router } from '@angular/router';
 })
 export class AuthComponent {
 
+  isLoginFormVisible: boolean = true; // Muestra el formulario de iniciar sesión por defecto
+
   registroData: any = {};
   userData: any =  {};
 
@@ -60,6 +62,10 @@ export class AuthComponent {
         console.error('Error al iniciar sesión:', error);
       }
     );
+  }
+
+  toggleForm() {
+    this.isLoginFormVisible = !this.isLoginFormVisible;
   }
 
 }

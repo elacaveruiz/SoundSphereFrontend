@@ -8,6 +8,7 @@ import {ArtistapageComponent} from "./artistapage/artistapage.component";
 import {ProfileComponent} from "./profile/profile.component";
 import {PlaylistComponent} from "./playlist/playlist.component";
 import {LikesComponent} from "./likes/likes.component";
+import {SearchComponent} from "./search/search.component";
 
 const routes: Routes = [
   { path: '', redirectTo: 'auth', pathMatch: 'full' },
@@ -17,8 +18,8 @@ const routes: Routes = [
   { path: 'auth', component: AuthComponent },
   { path: 'perfil/:id', component: ProfileComponent},
   { path: 'lista/:id', component: PlaylistComponent},
-  { path: 'like/:id', component: LikesComponent}
-
+  { path: 'like/:id', component: LikesComponent},
+  { path: 'search', component: SearchComponent}
 ];
 
 @NgModule({

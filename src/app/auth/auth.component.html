@@ -1,28 +1,37 @@
-<div>
-  <h2>Registro</h2>
-  <form (ngSubmit)="register(registroData, userData)">
-    <input type="text" [(ngModel)]="userData.nombre" name="name" placeholder="Nombre">
-    <input type="text" [(ngModel)]="userData.apellidos" name="surname" placeholder="Apellidos">
-    <input type="date" [(ngModel)]="userData.fechaNacimiento" name="birthdate" placeholder="Fecha de Nacimiento">
-    <select [(ngModel)]="userData.sexo" name="gender">
-      <option value="" disabled selected>Seleccione su género</option>
-      <option value="HOMBRE">Hombre</option>
-      <option value="MUJER">Mujer</option>
-      <option value="NOBINARIO">No binario</option>
-      <option value="NOESPECIFICADO">No especificado</option>
-    </select>
-    <input type="text" [(ngModel)]="registroData.username" name="username" placeholder="Nombre de usuario">
-    <input type="password" [(ngModel)]="registroData.password" name="password" placeholder="Contraseña">
-    <button type="submit">Registrarse</button>
-  </form>
-</div>
+<div class="main">
+  <h1>SoundSphere</h1>
+  <div class="auth-container">
+    <div *ngIf="isLoginFormVisible">
+      <h2>Iniciar sesión</h2>
+      <form (ngSubmit)="login(loginData)">
+        <input type="text" [(ngModel)]="loginData.username" name="username" placeholder="Nombre de usuario">
+        <input type="password" [(ngModel)]="loginData.password" name="password" placeholder="Contraseña">
+        <button type="submit">Iniciar sesión</button>
+      </form>
+      <button (click)="toggleForm()">¿No tienes una cuenta? Regístrate</button>
+    </div>
 
-<div>
-  <h2>Iniciar sesión</h2>
-  <form (ngSubmit)="login(loginData)">
-    <!-- Campos de entrada para iniciar sesión -->
-    <input type="text" [(ngModel)]="loginData.username" name="username" placeholder="Nombre de usuario">
-    <input type="password" [(ngModel)]="loginData.password" name="password" placeholder="Contraseña">
-    <button type="submit">Iniciar sesión</button>
-  </form>
+    <div *ngIf="!isLoginFormVisible">
+      <h2>Unirse a SoundSphere</h2>
+      <form (ngSubmit)="register(registroData, userData)">
+        <div class="input-group">
+          <input type="text" [(ngModel)]="userData.nombre" name="name" placeholder="Nombre">
+          <input type="text" [(ngModel)]="userData.apellidos" name="surname" placeholder="Apellidos">
+        </div>
+        <input type="date" [(ngModel)]="userData.fechaNacimiento" name="birthdate" placeholder="Fecha de Nacimiento">
+        <select [(ngModel)]="userData.sexo" name="gender">
+          <option value="" disabled selected>Seleccione su género</option>
+          <option value="HOMBRE">Hombre</option>
+          <option value="MUJER">Mujer</option>
+          <option value="NOBINARIO">No binario</option>
+          <option value="NOESPECIFICADO">No especificado</option>
+        </select>
+        <input type="text" [(ngModel)]="userData.urlImagen" name="name" placeholder="Url de Imagen">
+        <input type="text" [(ngModel)]="registroData.username" name="username" placeholder="Nombre de usuario">
+        <input type="password" [(ngModel)]="registroData.password" name="password" placeholder="Contraseña">
+        <button type="submit">Registrarse</button>
+      </form>
+      <button (click)="toggleForm()">¿Ya tienes una cuenta? Inicia sesión</button>
+    </div>
+  </div>
 </div>
