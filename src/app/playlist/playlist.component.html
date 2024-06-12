@@ -1,4 +1,64 @@
 <div class="non-listen">
   <app-lateral></app-lateral>
 
+  <div class="page">
+    <div class="content">
+      <div class="imagen">
+        <h1>{{lista.titulo}}</h1>
+        <p *ngIf="isOwner()" (click)="openEditPlaylistDropdown()">Editar Playlist</p>
+        <p *ngIf="isOwner()" (click)="deletePlaylist()">Eliminar Playlist</p>
+
+        <img class="img-album" [src]="lista.urlImagen">
+        <div class="info-artists">
+            <img [src]="usuario.urlImagen" class="artist-image">
+            <h4 [routerLink]="['/perfil', usuario.id]">{{ usuario.nombre }}</h4>
+        </div>
+      </div>
+      <div class="canciones">
+        <h3>Canciones</h3>
+        <div *ngFor="let cancion of canciones">
+          <div class="song-container">
+            <p><strong>{{ cancion.titulo }}</strong></p>
+            <div class="song-duration">
+              <p>{{ convertirSegundosAMinutos(cancion.duracion) }}</p>
+              <div class="song-buttons">
+                <img src="assets/images/play.png" class="icon" (click)="sendSong(cancion)">
+                <img src="assets/images/nolike.png" class="icon">
+                <img src="assets/images/settings.png" class="icon" (click)="openAddPlaylistDropdown(cancion.id)">
+                <img src="assets/images/home.jpg" class="icon" (click)="removeSongFromPlaylist(cancion.id)" >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Superposición para Agregar a Playlist -->
+    <div *ngIf="showAddDropdown" class="overlay" (click)="closeAddPlaylistDropdown()"></div>
+
+    <!-- Dropdown de Agregar a Playlist -->
+    <div *ngIf="showAddDropdown" class="playlist-dropdown">
+      <h3>Agregar a Playlist</h3>
+      <select (change)="onPlaylistSelected($event)">
+        <option value="" disabled selected>Selecciona una playlist</option>
+        <option *ngFor="let playlist of playlists" [value]="playlist.id">{{ playlist.titulo }}</option>
+      </select>
+      <input [(ngModel)]="newPlaylistTitle" placeholder="Nombre de la nueva Playlist">
+      <button (click)="createAndAddToNewPlaylist()">Crear nueva Playlist</button>
+      <button (click)="closeAddPlaylistDropdown()">Cerrar</button>
+    </div>
+
+    <!-- Superposición para Editar Playlist -->
+    <div *ngIf="showEditDropdown" class="overlay" (click)="closeEditPlaylistDropdown()"></div>
+
+    <!-- Dropdown de Editar Playlist -->
+    <div *ngIf="showEditDropdown" class="playlist-dropdown">
+      <h3>Editar Playlist</h3>
+      <input [(ngModel)]="lista.titulo" placeholder="Título de la Playlist">
+      <input [(ngModel)]="lista.urlImagen" placeholder="URL de la imagen">
+      <button (click)="updatePlaylist()">Guardar cambios</button>
+      <button (click)="closeEditPlaylistDropdown()">Cerrar</button>
+    </div>
+
 </div>
+
