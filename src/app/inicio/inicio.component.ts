@@ -12,12 +12,14 @@ export class InicioComponent implements OnInit {
 
   artistasFav: any[] = [];
   showAll: boolean = false;
+  friendlists: any[] = [];
 
   constructor(private http: HttpClient) {  }
 
   ngOnInit(): void {
     this.getFavouriteArtists();
     this.getLatestAlbums();
+    this.getFriendLists();
   }
 
   getLatestAlbums(): void {
@@ -32,7 +34,7 @@ export class InicioComponent implements OnInit {
   }
 
   getFavouriteArtists(): void{
-    const idLogin = localStorage.getItem('user');
+    const idLogin = localStorage.getItem('profile');
     const url = `http://localhost:8080/artista/fav/${idLogin}`;
     console.log('Realizando petición a:', url); // Aquí se mostrará la URL de la solicitud
     this.http.get<any[]>(url).subscribe(
@@ -41,6 +43,20 @@ export class InicioComponent implements OnInit {
       },
       error => {
         console.error('Error al obtener los artistas favoritos:', error);
+      }
+    );
+  }
+
+  getFriendLists(): void{
+    const idLogin = localStorage.getItem('profile');
+    const url = `http://localhost:8080/playlist/following/${idLogin}`;
+    console.log('Realizando petición a:', url); // Aquí se mostrará la URL de la solicitud
+    this.http.get<any[]>(url).subscribe(
+      friendlists => {
+        this.friendlists = friendlists;
+      },
+      error => {
+        console.error('Error al obtener los friendlists:', error);
       }
     );
   }

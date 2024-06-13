@@ -13,8 +13,7 @@
   border-radius: 20px;
   margin-left: 10px;
   display: flex;
-  flex-direction: row;
-  justify-content: space-around;
+  flex-direction: column;
   margin-bottom: 5vh;
   overflow-x: hidden;
 }
@@ -64,4 +63,85 @@
   cursor: pointer;
   color: white;
   margin-top: -15px;
+}
+
+.btn-logout{
+  background-color: #8d4040;
+  border: 2px solid #6c3c3c;
+  padding: 5px 10px;
+  font-size: 11px;
+  cursor: pointer;
+  color: white;
+  margin-top: 5px;
+}
+
+.artista-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-gap: 20px; /* Espacio entre las columnas */
+}
+
+.artista {
+  border: 1px solid #ccc; /* Borde para cada artista */
+  padding: 10px; /* Espacio interno para contenido */
+}
+
+.img-artista {
+  width: 100%;
+  height: auto; /* Permite que la altura de la imagen se ajuste automáticamente */
+  max-width: 100%; /* Limita la anchura de la imagen al 100% del contenedor */
+  aspect-ratio: 1 / 1; /* Esto mantiene la relación de aspecto 1:1 */
+  object-fit: cover; /* Recorta la imagen para que se ajuste al contenedor */
+}
+
+.fav-artista{
+  margin: 30px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.artist-link{
+  color: white;
+  text-decoration: none;
+}
+
+.playlists {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.lista-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Dos columnas */
+  gap: 20px;
+  width: 100%;
+  max-width: 800px;
+}
+
+.lista {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border: 1px #2c2733;
+  border-radius: 8px;
+  background-color: rgb(72, 66, 78);
+}
+
+.img-lista {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-right: 15px;
+}
+
+.artist-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.lista p {
+  margin: 0;
 }

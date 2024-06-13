@@ -75,3 +75,43 @@ a:hover{
   color: #c2c2c2;
   transition-duration: 0.3s;
 }
+
+.lista-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Dos columnas */
+  gap: 20px;
+  width: 100%;
+  max-width: 800px;
+}
+
+.lista {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border: 1px #2c2733;
+  border-radius: 8px;
+  background-color: rgb(44, 39, 51);
+}
+
+.img-lista {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-right: 15px;
+}
+
+.artist-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.lista p {
+  margin: 0;
+}
+
+.profile-link {
+  text-decoration: none;
+  color: inherit;
+  font-size: 12px;
+}

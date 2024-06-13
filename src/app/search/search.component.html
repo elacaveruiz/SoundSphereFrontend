@@ -16,7 +16,7 @@
 
       <!-- Lista de canciones -->
       <div *ngIf="searchResults.canciones && searchResults.canciones.length > 0">
-        <h3>Canciones</h3>
+        <h2>Canciones</h2>
         <div class="canciones">
           <div *ngFor="let cancion of searchResults.canciones" class="song-container">
             <img class="img-album-song" [src]="cancion.urlImagenAlbum">
@@ -33,7 +33,7 @@
               <div class="song-buttons">
                 <img src="assets/images/play.png" class="icon" (click)="sendSong(cancion)">
                 <img src="assets/images/nolike.png" class="icon">
-                <img src="assets/images/settings.png" class="icon">
+                <img src="assets/images/settings.png" class="icon" (click)="openAddPlaylistDropdown(cancion.id)">
               </div>
             </div>
           </div>
@@ -43,7 +43,7 @@
 
       <!-- Lista de artistas -->
       <div *ngIf="searchResults.artistas && searchResults.artistas.length > 0">
-        <h3>Artistas</h3>
+        <h2>Artistas</h2>
         <div class="fav-artista">
           <div class="artista-grid" [style.gridTemplateColumns]="'repeat(auto-fill, minmax(200px, 1fr))'">
             <div class="artista" *ngFor="let artista of searchResults.artistas.slice(0, showAllArtists ? searchResults.artistas.length : 4)">
@@ -57,7 +57,7 @@
 
       <!-- Lista de álbumes -->
       <div *ngIf="searchResults.albums && searchResults.albums.length > 0">
-        <h3>Álbumes</h3>
+        <h2>Álbumes</h2>
         <div class="novedades">
           <div class="album-grid" [style.gridTemplateColumns]="'repeat(auto-fill, minmax(200px, 1fr))'">
             <div class="album" *ngFor="let album of searchResults.albums.slice(0, showAll ? searchResults.albums.length : 4)">
@@ -74,9 +74,23 @@
         </div>
       </div>
 
+      <!-- Lista de listas -->
+      <div  *ngIf="searchResults.listas && searchResults.listas.length > 0">
+        <h2>Playlists</h2>
+        <div class="lista-grid">
+          <div class="lista" *ngFor="let lista of searchResults.listas">
+            <img [src]="lista.urlImagen" class="img-lista">
+            <div>
+              <p><b><a class="artist-link" [routerLink]="['/lista', lista.id]">{{ lista.titulo }}</a></b></p>
+              <p><a class="profile-link" [routerLink]="['/perfil', lista.usuario.id]">de {{ lista.usuario.nombre }} {{ lista.usuario.apellidos }}</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <!-- Lista de perfiles -->
       <div *ngIf="searchResults.usuarios && searchResults.usuarios.length > 0">
-        <h3>Perfiles</h3>
+        <h2>Perfiles</h2>
         <div class="fav-artista">
           <div class="artista-grid" [style.gridTemplateColumns]="'repeat(auto-fill, minmax(200px, 1fr))'">
             <div class="artista" *ngFor="let profile of searchResults.usuarios.slice(0, showAllProfiles ? searchResults.usuarios.length : 4)">
@@ -90,5 +104,21 @@
 
 
     </div>
+
+    <!-- Superposición para Agregar a Playlist -->
+    <div *ngIf="showAddDropdown" class="overlay" (click)="closeAddPlaylistDropdown()"></div>
+
+    <!-- Dropdown de Agregar a Playlist -->
+    <div *ngIf="showAddDropdown" class="playlist-dropdown">
+      <h3>Agregar a Playlist</h3>
+      <select (change)="onPlaylistSelected($event)">
+        <option value="" disabled selected>Selecciona una playlist</option>
+        <option *ngFor="let playlist of playlists" [value]="playlist.id">{{ playlist.titulo }}</option>
+      </select>
+      <input [(ngModel)]="newPlaylistTitle" placeholder="Nombre de la nueva Playlist">
+      <button (click)="createAndAddToNewPlaylist()">Crear nueva Playlist</button>
+      <button (click)="closeAddPlaylistDropdown()">Cerrar</button>
+    </div>
+
   </div>
 </div>

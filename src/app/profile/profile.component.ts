@@ -15,19 +15,24 @@ export class ProfileComponent implements OnInit{
   userId: number = parseInt(localStorage.getItem('profile') || '0'); // ID del usuario actual
   profileId: number = 0; // ID del perfil que se visualiza
   isOwnProfile: boolean = false;
+  artistasFav: any[] = [];
 
   constructor(private http: HttpClient, private route: ActivatedRoute, private router: Router) {  }
 
   ngOnInit(): void {
-    this.getUserData()
-    this.getUserPlaylists()
+    this.getUserData();
+    this.getUserPlaylists();
     this.route.params.subscribe(params => {
       this.profileId = +params['id']; // Obtener el ID del perfil que estás viendo
       this.isOwnProfile = this.userId === this.profileId; // Comprobar si es el propio perfil
       if (!this.isOwnProfile) {
         this.checkIfFollowing();
       }
+      this.getFavouriteArtists();
+      this.getUserPlaylists();
     });
+
+
   }
 
   getUserData(): void{
@@ -45,7 +50,7 @@ export class ProfileComponent implements OnInit{
   }
 
   getUserPlaylists(): void{
-    const idUser = localStorage.getItem("profile");
+    const idUser = this.profileId;
     const url = `http://localhost:8080/playlist/user/${idUser}`;
     console.log('Realizando petición a:', url); // Aquí se mostrará la URL de la solicitud
     this.http.get<any[]>(url).subscribe(
@@ -87,4 +92,24 @@ export class ProfileComponent implements OnInit{
   goToEditProfile(): void {
     this.router.navigate(['/edit-profile']);
   }
+
+  getFavouriteArtists(): void{
+    const idLogin = this.profileId;
+    const url = `http://localhost:8080/artista/fav/${idLogin}`;
+    console.log('Realizando petición a:', url); // Aquí se mostrará la URL de la solicitud
+    this.http.get<any[]>(url).subscribe(
+      artistasfav => {
+        this.artistasFav = artistasfav;
+      },
+      error => {
+        console.error('Error al obtener los artistas favoritos:', error);
+      }
+    );
+  }
+
+  logout() {
+    localStorage.clear();
+    this.router.navigate(['/auth']);
+  }
+
 }

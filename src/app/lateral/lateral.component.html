@@ -8,6 +8,7 @@
     <h3>Tus listas</h3>
     <div class="playlists">
       <div *ngFor="let lista of listas" class="playlist-item">
+        <img [src]="lista.urlImagen" class="img-list">
         <p><a [routerLink]="['/lista', lista.id]">{{ lista.titulo }}</a></p>
       </div>
     </div>

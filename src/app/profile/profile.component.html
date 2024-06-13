@@ -6,9 +6,33 @@
         <h1>{{userData.nombre}} {{userData.apellidos}}</h1>
 
         <button *ngIf="isOwnProfile" (click)="goToEditProfile()" class="btn-edit-profile">Editar perfil</button>
+        <button *ngIf="isOwnProfile" (click)="logout()" class="btn-logout">Cerrar sesión</button>
+
         <button *ngIf="!isOwnProfile && !isFollowing" (click)="toggleFollow()" class="btn-follow">Seguir</button>
         <button *ngIf="!isOwnProfile && isFollowing" (click)="toggleFollow()" class="btn-following">Siguiendo</button>
 
+      </div>
+
+      <div class="playlists">
+        <h2>Playlists de {{userData.nombre}}</h2>
+        <div class="lista-grid">
+          <div class="lista" *ngFor="let lista of listas">
+            <img [src]="lista.urlImagen" class="img-lista">
+            <p><b><a class="artist-link" [routerLink]="['/lista', lista.id]">{{ lista.titulo }}</a></b></p>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="fav-artista">
+        <h2>Artistas favoritos de {{userData.nombre}}</h2>
+        <div class="artista-grid" [style.gridTemplateColumns]="'repeat(auto-fill, minmax(200px, 1fr))'">
+          <div class="artista" *ngFor="let artista of artistasFav">
+            <!-- Mostrar la imagen del artista aquí -->
+            <img [src]="artista.urlImagen" class="img-artista">
+            <p><b><a class="artist-link" [routerLink]="['/artista', artista.id]">{{ artista.nombre }}</a></b></p>
+          </div>
+        </div>
       </div>
     </div>
 </div>

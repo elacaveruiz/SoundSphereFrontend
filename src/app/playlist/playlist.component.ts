@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ChangeDetectorRef} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {SongService} from "../service/song.service";
@@ -39,17 +39,17 @@ export class PlaylistComponent implements OnInit{
       this.listaId = params['id'];
       this.getPlaylistDetails(this.listaId);
       this.getPlaylistSongs(this.listaId);
-      this.getUserData(this.userId);
       this.loadPlaylists();
     });
   }
 
-  getPlaylistDetails(listaId: number): void{
+  getPlaylistDetails(listaId: number): void {
     // Hacer la solicitud HTTP para obtener los detalles de la lista
     this.http.get<any>('http://localhost:8080/playlist/' + listaId).subscribe(
       lista => {
         console.log('Datos de la lista:', lista);
         this.lista = lista;
+        this.getUserData(lista.idUsuario);
       },
       error => {
         console.error('Error al obtener los detalles:', error);
@@ -181,9 +181,6 @@ export class PlaylistComponent implements OnInit{
     return this.lista.idUsuario === this.userId;
   }
 
-  editPlaylist(): void {
-    this.showEditDropdown = true;
-  }
 
   updatePlaylist(): void {
     const headers = new HttpHeaders({
@@ -212,8 +209,6 @@ export class PlaylistComponent implements OnInit{
       this.http.delete(`http://localhost:8080/playlist/delete/${this.listaId}`, { headers }).subscribe(
         () => {
           console.log('Playlist eliminada');
-          // Redirigir o actualizar la vista según sea necesario
-          // Por ejemplo, podrías redirigir a la página de listas de reproducción del usuario
           window.location.href = '/inicio'; // Asegúrate de que esta ruta exista en tu aplicación
         },
         error => {
@@ -223,11 +218,11 @@ export class PlaylistComponent implements OnInit{
     }
   }
 
-  removeSongFromPlaylist(cancionId: number): void {
+  removeSongFromPlaylist(cancionId: number) {
     this.http.delete(`http://localhost:8080/playlist/remove-song/${this.listaId}/${cancionId}`).subscribe(
       () => {
-        console.log('Canción eliminada de la lista correctamente.');
-        // Actualiza la lista de canciones o realiza otras acciones necesarias después de eliminar la canción.
+        console.log('Canción eliminada de la playlist');
+        this.canciones = this.canciones.filter(cancion => cancion.id !== cancionId);
       },
       error => {
         console.error('Error al eliminar la canción de la lista:', error);

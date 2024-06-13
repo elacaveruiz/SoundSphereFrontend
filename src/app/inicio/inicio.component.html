@@ -32,9 +32,22 @@
       </div>
     </div>
 
-    <div class="listas">
-      <h2>Listas de éxitos</h2>
+
+    <!-- Lista de listas -->
+    <div class="friendlists">
+      <h2>Listas de tus seguidos</h2>
+      <div class="lista-grid">
+        <div class="lista" *ngFor="let lista of friendlists">
+          <img [src]="lista.urlImagen" class="img-lista">
+          <div>
+            <p><b><a class="artist-link" [routerLink]="['/lista', lista.id]">{{ lista.titulo }}</a></b></p>
+            <p><a class="profile-link" [routerLink]="['/perfil', lista.usuario.id]">de {{ lista.usuario.nombre }} {{ lista.usuario.apellidos }}</a></p>
+          </div>
+        </div>
+      </div>
     </div>
+
+
   </div>
 </div>
 

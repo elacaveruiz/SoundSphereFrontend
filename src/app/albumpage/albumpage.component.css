@@ -42,10 +42,13 @@
 
 .artist-image{
   width: 50px;
-  height: 50px;
-  border-radius: 100%;
+  border-radius: 50%;
   margin-right: 15px;
   margin-top: 5px;
+
+  height: auto; /* Permite que la altura de la imagen se ajuste automáticamente */
+  aspect-ratio: 1 / 1; /* Esto mantiene la relación de aspecto 1:1 */
+  object-fit: cover;
 }
 
 .canciones{
@@ -89,13 +92,7 @@
 .icon{
   width: 15px;
   height: 15px;
-  transition-duration: 0.3s;
-}
-
-.icon:hover {
-  width: 13px;
-  height: 13px;
-  transition-duration: 0.3s;
+  cursor: pointer;
 }
 
 /* Superposición */
