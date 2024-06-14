@@ -9,7 +9,7 @@
         <ng-container *ngFor="let artista of artistas; let last = last">
           <div class="artist-cont">
             <img [src]="artista.urlImagen" class="artist-image">
-            <h4>{{ artista.nombre }}</h4>
+            <h4 [routerLink]="['/artista', artista.id]">{{ artista.nombre }}</h4>
           </div>
         </ng-container>
       </div>

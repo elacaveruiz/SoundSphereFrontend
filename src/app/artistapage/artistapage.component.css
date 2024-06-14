@@ -1,0 +1,209 @@
+@import url('https://fonts.googleapis.com/css2?family=Lilita+One&family=Lobster&family=Rowdies:wght@300;400;700&display=swap');
+
+.non-listen{
+  height: 90vh;
+  display: flex;
+  flex-direction: row;
+}
+
+.page{
+  width: 70%;
+  max-height: 100%;
+  overflow-y: auto; /* Agregar scroll vertical si es necesario */
+  margin-left: 0.5%;
+  background: linear-gradient(to bottom, #623c6c, #2c2733);
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  border-radius: 20px;
+  margin-bottom: 5vh;
+  overflow-x: hidden;
+  scrollbar-width: none;
+}
+
+.artist-header{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: #211d26;
+  width: 100%;
+  padding: 40px 0;
+  border-radius: 10px;
+  justify-content: center;
+}
+
+.img-artista{
+  width: 40vh;
+  height: auto;
+  max-width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 100%;
+  margin-left: 20px;
+}
+
+.nombre-artista{
+  font-size: 70px;
+  margin-left: 20px;
+
+
+  font-family: "Rowdies", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.popular-songs{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+.song-container{
+  width: 450px;
+  display: flex;
+  flex-direction: row;
+  background-color: rgba(40, 40, 40, 0.8);
+  padding: 10px 30px;
+  justify-content: space-between;
+  font-size: small;
+  align-items: center;
+  margin: 5px 0;
+  border-radius: 10px;
+}
+
+.song-container a{
+  text-decoration: none;
+  color: #cccccc;
+  font-size: smaller;
+  margin-top: -30px;
+}
+
+.song-title{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.song-details {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.song-duration{
+  min-width: 30%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  color: #8d8d8d;
+}
+
+
+.song-buttons{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  min-width: 70%;
+  margin-left: 10px;
+}
+
+.icon{
+  width: 15px;
+  height: 15px;
+  cursor: pointer;
+}
+
+/* Superposición */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Color de fondo oscuro con transparencia */
+  z-index: 999; /* Asegura que la superposición esté por encima de otros elementos */
+}
+
+/* Dropdown de la playlist */
+.playlist-dropdown {
+  position: fixed; /* Cambia a fixed para que se posicione respecto a la ventana */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: linear-gradient(to bottom, #623c6c, #2c2733);
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000; /* Asegura que el dropdown esté por encima de la superposición */
+  border-radius: 8px;
+  width: 300px; /* Ajusta el ancho según sea necesario */
+  color: white;
+}
+
+.playlist-dropdown input,
+.playlist-dropdown button {
+  width: calc(100% - 20px); /* Añade un pequeño margen interno */
+  margin-bottom: 10px;
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+.playlist-dropdown select {
+  width: 100%; /* Asegura que el select tenga el mismo ancho que los otros elementos */
+  margin-bottom: 10px; /* Añade un margen inferior */
+  padding: 8px; /* Añade relleno */
+  border-radius: 4px; /* Aplica un borde redondeado */
+  border: 1px solid #ccc; /* Añade un borde */
+}
+
+.playlist-dropdown button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+}
+
+.playlist-dropdown button:last-child {
+  background-color: #dc3545; /* Rojo para el botón de cerrar */
+}
+
+.reproducciones{
+  margin-right: 15px;
+}
+
+.img-song{
+  width: 50px;
+  margin: 0 15px;
+}
+
+
+.album-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-gap: 20px; /* Espacio entre las columnas */
+
+}
+.album {
+  border: 1px solid #ccc; /* Borde para cada álbum */
+  padding: 10px; /* Espacio interno para contenido */
+}
+
+.img-album {
+  width: 100%; /* Para asegurar que la imagen se ajuste al tamaño del contenedor */
+}
+
+a{
+  text-decoration: none;
+  color: white;
+  transition-duration: 0.3s;
+}
+a:hover{
+  transition-duration: 0.3s;
+  color: #c2c2c2;
+}

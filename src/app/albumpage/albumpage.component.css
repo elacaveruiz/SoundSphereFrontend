@@ -17,6 +17,7 @@
   justify-content: space-around;
   margin-bottom: 5vh;
   overflow-x: hidden;
+  scrollbar-width: none;
 }
 
 .portada h1{
@@ -150,4 +151,8 @@
 
 .playlist-dropdown button:last-child {
   background-color: #dc3545; /* Rojo para el botón de cerrar */
+}
+
+h4{
+  cursor: pointer;
 }

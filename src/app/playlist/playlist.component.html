@@ -18,7 +18,14 @@
         <h3>Canciones</h3>
         <div *ngFor="let cancion of canciones">
           <div class="song-container">
-            <p><strong>{{ cancion.titulo }}</strong></p>
+            <div class="song-info">
+              <p><strong>{{ cancion.titulo }}</strong></p>
+              <p>
+                <ng-container *ngFor="let artista of cancion.artistas; let last = last">
+                  <a [routerLink]="['/artista', artista.id]">{{ artista.nombre }}</a>{{ !last ? ', ' : '' }}
+                </ng-container>
+              </p>
+            </div>
             <div class="song-duration">
               <p>{{ convertirSegundosAMinutos(cancion.duracion) }}</p>
               <div class="song-buttons">

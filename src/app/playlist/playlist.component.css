@@ -110,6 +110,14 @@
   margin-top: -30px;
 }
 
+.song-info{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-right: 15px;
+}
+
 .song-duration{
   min-width: 30%;
   display: flex;

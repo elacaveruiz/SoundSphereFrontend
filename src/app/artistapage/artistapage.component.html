@@ -2,5 +2,61 @@
   <app-lateral></app-lateral>
 
   <div class="page">
+
+    <div class="artist-header">
+      <img class="img-artista" [src]="artista.urlImagen">
+      <p class="nombre-artista"><b>{{artista.nombre}}</b></p>
+    </div>
+
+    <div class="popular-songs">
+      <h1>Canciones populares</h1>
+        <div *ngFor="let cancion of canciones.slice(0, 5); let i = index">
+          <div class="song-container">
+            <div class="song-title">
+            <p>{{ i + 1 }}</p>
+            <img class="img-song" [src]="cancion.urlImagenAlbum">
+            <p><strong>{{ cancion.titulo }}</strong></p>
+            </div>
+            <div class="song-details">
+              <p class="reproducciones">{{ cancion.reproducciones }}</p>
+              <div class="song-duration">
+                <p>{{ convertirSegundosAMinutos(cancion.duracion) }}</p>
+                <div class="song-buttons">
+                  <img src="assets/images/play.png" class="icon" (click)="sendSong(cancion)">
+                  <img src="assets/images/nolike.png" class="icon">
+                  <img src="assets/images/settings.png" (click)="openAddPlaylistDropdown(cancion.id)" class="icon">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <div class="discography">
+      <h1>Discografía de {{artista.nombre}}</h1>
+      <div class="album-grid" [style.gridTemplateColumns]="'repeat(auto-fill, minmax(200px, 1fr))'">
+        <div class="album" *ngFor="let album of albumes">
+          <!-- Mostrar los detalles del álbum aquí -->
+          <img [src]="album.urlImagen" class="img-album">
+          <p><b><a [routerLink]="['/album', album.id]">{{ album.titulo }}</a></b></p>
+          <p>
+            <!-- Usar un ngFor para mostrar los nombres de los artistas -->
+            <ng-container *ngFor="let artista of album.artistas; let last = last">
+              <a [routerLink]="['/artista', artista.id]">{{ artista.nombre }}</a>{{ !last ? ', ' : '' }}
+            </ng-container>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="events">
+      <h1>Próximos eventos</h1>
+
+    </div>
+
+    <div class="artist-info">
+
+    </div>
+
   </div>
 </div>
