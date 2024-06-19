@@ -5,7 +5,7 @@
         <img class="img-profile" [src]="userData.urlImagen">
         <h1>{{userData.nombre}} {{userData.apellidos}}</h1>
 
-        <button *ngIf="isOwnProfile" (click)="goToEditProfile()" class="btn-edit-profile">Editar perfil</button>
+        <button *ngIf="isOwnProfile" (click)="openEditUserDropdown()" class="btn-edit-profile">Editar perfil</button>
         <button *ngIf="isOwnProfile" (click)="logout()" class="btn-logout">Cerrar sesión</button>
 
         <button *ngIf="!isOwnProfile && !isFollowing" (click)="toggleFollow()" class="btn-follow">Seguir</button>
@@ -34,5 +34,60 @@
           </div>
         </div>
       </div>
+
+      <div class="last-songs">
+        <h2>Últimas canciones reproducidas</h2>
+      </div>
+      <div class="canciones">
+        <div *ngFor="let cancion of canciones" class="song-container">
+          <img class="img-album-song" [src]="cancion.urlImagenAlbum">
+          <div class="song-info">
+            <p class="song-title"><strong>{{ cancion.titulo }}</strong></p>
+            <p class="song-artists">
+              <ng-container *ngFor="let artista of cancion.artistas; let last = last">
+                <a [routerLink]="['/artista', artista.id]">{{ artista.nombre }}</a>{{ !last ? ', ' : '' }}
+              </ng-container>
+            </p>
+          </div>
+          <div class="song-duration">
+            <p>{{ convertirSegundosAMinutos(cancion.duracion) }}</p>
+            <div class="song-buttons">
+              <img src="assets/images/play.png" class="icon" (click)="sendSong(cancion)">
+              <img src="assets/images/nolike.png" class="icon">
+              <img src="assets/images/settings.png" class="icon" (click)="openAddPlaylistDropdown(cancion.id)">
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+
+  <!-- Superposición para Agregar a Playlist -->
+  <div *ngIf="showAddDropdown" class="overlay" (click)="closeAddPlaylistDropdown()"></div>
+
+  <!-- Dropdown de Agregar a Playlist -->
+  <div *ngIf="showAddDropdown" class="playlist-dropdown">
+    <h3>Agregar a Playlist</h3>
+    <select (change)="onPlaylistSelected($event)">
+      <option value="" disabled selected>Selecciona una playlist</option>
+      <option *ngFor="let playlist of playlists" [value]="playlist.id">{{ playlist.titulo }}</option>
+    </select>
+    <input [(ngModel)]="newPlaylistTitle" placeholder="Nombre de la nueva Playlist">
+    <input [(ngModel)]="newPlaylistImage" placeholder="Imagen de la nueva Playlist">
+    <button (click)="createAndAddToNewPlaylist()">Crear nueva Playlist</button>
+    <button (click)="closeAddPlaylistDropdown()">Cerrar</button>
+  </div>
+
+  <!-- Superposición para Editar Playlist -->
+  <div *ngIf="showEditDropdown" class="overlay" (click)="closeEditUserDropdown()"></div>
+
+  <!-- Dropdown de Editar Playlist -->
+  <div *ngIf="showEditDropdown" class="playlist-dropdown">
+    <h3>Editar Usuario</h3>
+    <input [(ngModel)]="userData.nombre" placeholder="Nombre">
+    <input [(ngModel)]="userData.apellidos" placeholder="Apellidos">
+    <input [(ngModel)]="userData.urlImagen" placeholder="URL de la imagen">
+    <button (click)="updateUser()">Guardar cambios</button>
+    <button (click)="closeEditUserDropdown()">Cerrar</button>
+  </div>
+
 </div>

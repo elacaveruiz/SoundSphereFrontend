@@ -19,6 +19,7 @@ export class PlaylistComponent implements OnInit{
   selectedCancionId: number | null = null;
   playlists: any[] = [];
   newPlaylistTitle: string = '';
+  newPlaylistImage: string = '';
   userId: number = parseInt(localStorage.getItem('profile') || '0'); // ID del usuario actual
   listaEditada: any | null = null;
 
@@ -143,9 +144,10 @@ export class PlaylistComponent implements OnInit{
 
 
   createAndAddToNewPlaylist() {
-    if (this.selectedCancionId !== null && this.newPlaylistTitle.trim()) {
+    if (this.selectedCancionId !== null && this.newPlaylistTitle.trim() && this.newPlaylistImage.trim()) {
       const newPlaylist = {
         titulo: this.newPlaylistTitle,
+        urlImagen: this.newPlaylistImage,
         idUsuario: localStorage.getItem('profile')
       };
       this.http.post('http://localhost:8080/playlist/create', newPlaylist).subscribe(

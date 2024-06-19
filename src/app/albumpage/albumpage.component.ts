@@ -18,6 +18,7 @@ showDropdown: boolean = false;
 selectedCancionId: number | null = null;
 playlists: any[] = [];
 newPlaylistTitle: string = '';
+  newPlaylistImage: string = '';
 
   sendSong(song: any): void {
     const dataToSend = {
@@ -136,9 +137,10 @@ newPlaylistTitle: string = '';
 
 
   createAndAddToNewPlaylist() {
-    if (this.selectedCancionId !== null && this.newPlaylistTitle.trim()) {
+    if (this.selectedCancionId !== null && this.newPlaylistTitle.trim() && this.newPlaylistImage.trim()) {
       const newPlaylist = {
         titulo: this.newPlaylistTitle,
+        urlImagen: this.newPlaylistImage,
         idUsuario: localStorage.getItem('profile')
       };
       this.http.post('http://localhost:8080/playlist/create', newPlaylist).subscribe(

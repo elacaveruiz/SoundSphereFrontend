@@ -73,7 +73,6 @@
   width: 30px;
   border-radius: 100%;
   margin-right: 15px;
-  margin-top: 5px;
 
   height: auto; /* Permite que la altura de la imagen se ajuste automáticamente */
   max-width: 100%; /* Limita la anchura de la imagen al 100% del contenedor */

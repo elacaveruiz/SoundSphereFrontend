@@ -11,7 +11,7 @@
         <img class="img-album" [src]="lista.urlImagen">
         <div class="info-artists">
             <img [src]="usuario.urlImagen" class="artist-image">
-            <h4 [routerLink]="['/perfil', usuario.id]">{{ usuario.nombre }}</h4>
+            <h4 [routerLink]="['/perfil', usuario.id]">{{ usuario.nombre }} {{ usuario.apellidos }}</h4>
         </div>
       </div>
       <div class="canciones">
@@ -51,6 +51,7 @@
         <option *ngFor="let playlist of playlists" [value]="playlist.id">{{ playlist.titulo }}</option>
       </select>
       <input [(ngModel)]="newPlaylistTitle" placeholder="Nombre de la nueva Playlist">
+      <input [(ngModel)]="newPlaylistImage" placeholder="Imagen de la nueva Playlist">
       <button (click)="createAndAddToNewPlaylist()">Crear nueva Playlist</button>
       <button (click)="closeAddPlaylistDropdown()">Cerrar</button>
     </div>

@@ -116,6 +116,7 @@
         <option *ngFor="let playlist of playlists" [value]="playlist.id">{{ playlist.titulo }}</option>
       </select>
       <input [(ngModel)]="newPlaylistTitle" placeholder="Nombre de la nueva Playlist">
+      <input [(ngModel)]="newPlaylistImage" placeholder="Imagen de la nueva Playlist">
       <button (click)="createAndAddToNewPlaylist()">Crear nueva Playlist</button>
       <button (click)="closeAddPlaylistDropdown()">Cerrar</button>
     </div>

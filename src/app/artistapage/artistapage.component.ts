@@ -18,6 +18,7 @@ export class ArtistapageComponent implements OnInit{
   playlists: any[] = [];
   selectedCancionId: number | null = null;
   newPlaylistTitle: string = '';
+  newPlaylistImage: string = '';
   userId: number = parseInt(localStorage.getItem('profile') || '0'); // ID del usuario actual
   listaEditada: any | null = null;
 
@@ -68,11 +69,12 @@ export class ArtistapageComponent implements OnInit{
     );
   }
 
-  getArtistsAlbums(artistaId: number): void{
-    this.http.get<any>('http://localhost:8080/artista/album/' + artistaId).subscribe(
+  getArtistsAlbums(artistaId: number): void {
+    this.http.get<any>(`http://localhost:8080/artista/album/${artistaId}`).subscribe(
       datos => {
         console.log('Discografía del artista:', datos);
-        this.albumes = datos;
+        this.albumes = datos.sort((a: any, b: any) => new Date(b.fechaPublicacion).getTime() - new Date(a.fechaPublicacion).getTime());
+        console.log('Albumes ordenados:', this.albumes);
       },
       error => {
         console.error('Error al obtener la discografía del artista:', error);
@@ -81,9 +83,10 @@ export class ArtistapageComponent implements OnInit{
   }
 
   createAndAddToNewPlaylist() {
-    if (this.selectedCancionId !== null && this.newPlaylistTitle.trim()) {
+    if (this.selectedCancionId !== null && this.newPlaylistTitle.trim() && this.newPlaylistImage.trim()) {
       const newPlaylist = {
         titulo: this.newPlaylistTitle,
+        urlImagen: this.newPlaylistImage,
         idUsuario: localStorage.getItem('profile')
       };
       this.http.post('http://localhost:8080/playlist/create', newPlaylist).subscribe(
