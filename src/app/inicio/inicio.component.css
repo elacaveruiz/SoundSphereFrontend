@@ -7,7 +7,7 @@
 .content{
   width: 69%;
   max-height: 100%;
-  overflow-y: auto; /* Agregar scroll vertical si es necesario */
+  overflow-y: auto;
   margin-left: 1%;
   background: linear-gradient(to bottom, #623c6c, #2c2733);
   display: flex;
@@ -21,16 +21,16 @@
 .album-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  grid-gap: 20px; /* Espacio entre las columnas */
+  grid-gap: 20px;
 
 }
 .album {
-  border: 1px solid #ccc; /* Borde para cada álbum */
-  padding: 10px; /* Espacio interno para contenido */
+  border: 1px solid #ccc;
+  padding: 10px;
 }
 
 .img-album {
-  width: 100%; /* Para asegurar que la imagen se ajuste al tamaño del contenedor */
+  width: 100%;
 }
 
 .hidden {
@@ -50,20 +50,20 @@ a:hover{
 .artista-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  grid-gap: 20px; /* Espacio entre las columnas */
+  grid-gap: 20px;
 }
 
 .artista {
-  border: 1px solid #ccc; /* Borde para cada artista */
-  padding: 10px; /* Espacio interno para contenido */
+  border: 1px solid #ccc;
+  padding: 10px;
 }
 
 .img-artista {
   width: 100%;
-  height: auto; /* Permite que la altura de la imagen se ajuste automáticamente */
-  max-width: 100%; /* Limita la anchura de la imagen al 100% del contenedor */
-  aspect-ratio: 1 / 1; /* Esto mantiene la relación de aspecto 1:1 */
-  object-fit: cover; /* Recorta la imagen para que se ajuste al contenedor */
+  height: auto;
+  max-width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
 }
 
 .show-more{
@@ -80,7 +80,7 @@ a:hover{
 
 .lista-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* Dos columnas */
+  grid-template-columns: repeat(2, 1fr);
   gap: 20px;
   width: 100%;
   max-width: 800px;
@@ -126,15 +126,15 @@ a:hover{
 .event-grid {
   margin-top: -20px;
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* Tres columnas de igual tamaño */
-  gap: 20px; /* Espacio entre las tarjetas */
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
   padding: 20px;
 }
 
 .event-card {
-  background-color: #2c2733; /* Fondo claro para las tarjetas */
-  border: 1px solid #ddd; /* Borde gris claro */
-  padding: 20px; /* Espaciado interno */
-  border-radius: 5px; /* Bordes redondeados */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+  background-color: #2c2733;
+  border: 1px solid #ddd;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }

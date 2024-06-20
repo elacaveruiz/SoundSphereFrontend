@@ -8,7 +8,7 @@
 .page{
   width: 100%;
   max-height: 100%;
-  overflow-y: auto; /* Agregar scroll vertical si es necesario */
+  overflow-y: auto;
   background: linear-gradient(to bottom, #623c6c, #2c2733);
   border-radius: 20px;
   margin-left: 10px;
@@ -47,8 +47,8 @@
   margin-right: 15px;
   margin-top: 5px;
 
-  height: auto; /* Permite que la altura de la imagen se ajuste automáticamente */
-  aspect-ratio: 1 / 1; /* Esto mantiene la relación de aspecto 1:1 */
+  height: auto;
+  aspect-ratio: 1 / 1;
   object-fit: cover;
 }
 
@@ -96,46 +96,45 @@
   cursor: pointer;
 }
 
-/* Superposición */
 .overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5); /* Color de fondo oscuro con transparencia */
-  z-index: 999; /* Asegura que la superposición esté por encima de otros elementos */
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
 }
 
 /* Dropdown de la playlist */
 .playlist-dropdown {
-  position: fixed; /* Cambia a fixed para que se posicione respecto a la ventana */
+  position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   background: linear-gradient(to bottom, #623c6c, #2c2733);
   padding: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  z-index: 1000; /* Asegura que el dropdown esté por encima de la superposición */
+  z-index: 1000;
   border-radius: 8px;
-  width: 300px; /* Ajusta el ancho según sea necesario */
+  width: 300px;
   color: white;
 }
 
 .playlist-dropdown input,
 .playlist-dropdown button {
-  width: calc(100% - 20px); /* Añade un pequeño margen interno */
+  width: calc(100% - 20px);
   margin-bottom: 10px;
   padding: 8px;
   border-radius: 4px;
   border: 1px solid #ccc;
 }
 .playlist-dropdown select {
-  width: 100%; /* Asegura que el select tenga el mismo ancho que los otros elementos */
-  margin-bottom: 10px; /* Añade un margen inferior */
-  padding: 8px; /* Añade relleno */
-  border-radius: 4px; /* Aplica un borde redondeado */
-  border: 1px solid #ccc; /* Añade un borde */
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
 }
 
 .playlist-dropdown button {
@@ -150,7 +149,7 @@
 }
 
 .playlist-dropdown button:last-child {
-  background-color: #dc3545; /* Rojo para el botón de cerrar */
+  background-color: #dc3545;
 }
 
 h4{

@@ -60,12 +60,12 @@
 
 .playlists {
   overflow-x: auto;
-  scrollbar-width: none; /* Oculta el scrollbar en navegadores compatibles */
+  scrollbar-width: none;
   margin-top: 10px;
 }
 
 .playlists::-webkit-scrollbar {
-  display: none; /* Oculta el scrollbar en navegadores webkit */
+  display: none;
 }
 
 .playlist-item{
@@ -84,9 +84,9 @@
 
 .img-list{
   width: 30px;
-  height: auto; /* Permite que la altura de la imagen se ajuste automáticamente */
-  max-width: 100%; /* Limita la anchura de la imagen al 100% del contenedor */
-  aspect-ratio: 1 / 1; /* Esto mantiene la relación de aspecto 1:1 */
+  height: auto;
+  max-width: 100%;
+  aspect-ratio: 1 / 1;
   object-fit: cover;
   margin-right: 15px;
 
