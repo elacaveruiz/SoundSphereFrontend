@@ -88,7 +88,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  min-width: 70%;
+  min-width: 60%;
 }
 
 .song-container{
@@ -118,7 +118,7 @@
 }
 
 .song-duration{
-  min-width: 30%;
+  min-width: 25%;
   display: flex;
   flex-direction: row;
   align-items: center;

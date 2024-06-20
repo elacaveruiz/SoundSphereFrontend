@@ -32,6 +32,17 @@
       </div>
     </div>
 
+    <div class="eventos">
+      <h2>Próximos Eventos</h2>
+      <div class="event-grid">
+        <div class="event-card" *ngFor="let evento of eventos">
+          <h4>{{evento.fecha | date: 'dd/MM/yyyy' }}</h4>
+          <h2>{{evento.titulo}}</h2>
+          <p>{{evento.descripcion}}</p>
+        </div>
+      </div>
+    </div>
+
 
     <!-- Lista de listas -->
     <div class="friendlists">

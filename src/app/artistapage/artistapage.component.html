@@ -23,7 +23,6 @@
                 <p>{{ convertirSegundosAMinutos(cancion.duracion) }}</p>
                 <div class="song-buttons">
                   <img src="assets/images/play.png" class="icon" (click)="sendSong(cancion)">
-                  <img src="assets/images/nolike.png" class="icon">
                   <img src="assets/images/settings.png" (click)="openAddPlaylistDropdown(cancion.id)" class="icon">
                 </div>
               </div>
@@ -44,8 +43,20 @@
       </div>
     </div>
 
-    <div class="artist-info">
+    <div class="eventos">
+      <h1>Próximos eventos de {{artista.nombre}}</h1>
+      <div class="event-grid">
+        <div class="event-card" *ngFor="let evento of eventos">
+          <h4>{{evento.fecha | date: 'dd/MM/yyyy' }}</h4>
+          <h2>{{evento.titulo}}</h2>
+          <p>{{evento.descripcion}}</p>
+        </div>
+      </div>
+    </div>
 
+    <div class="artist-info">
+      <h1>{{artista.nombre}}</h1>
+      <p>{{artista.biografia}}</p>
     </div>
 
     <!-- Superposición -->

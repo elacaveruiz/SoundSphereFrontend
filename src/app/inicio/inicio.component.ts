@@ -9,7 +9,7 @@ import {HttpClient} from "@angular/common/http";
 export class InicioComponent implements OnInit {
 
   novedades: any[] = [];
-
+  eventos: any[] = [];
   artistasFav: any[] = [];
   showAll: boolean = false;
   friendlists: any[] = [];
@@ -20,6 +20,7 @@ export class InicioComponent implements OnInit {
     this.getFavouriteArtists();
     this.getLatestAlbums();
     this.getFriendLists();
+    this.getNextEvents();
   }
 
   getLatestAlbums(): void {
@@ -61,5 +62,16 @@ export class InicioComponent implements OnInit {
     );
   }
 
+  getNextEvents(): void{
+    this.http.get<any[]>("http://localhost:8080/evento/next").subscribe(
+      eventos => {
+        this.eventos = eventos;
+        console.log(eventos)
+      },
+      error => {
+        console.error('Error al obtener los eventos:', error);
+      }
+    );
+  }
 }
 //<>

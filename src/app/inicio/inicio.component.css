@@ -117,3 +117,24 @@ a:hover{
   color: inherit;
   font-size: 12px;
 }
+
+.eventos{
+  margin-top: 10px;
+  cursor: default;
+}
+
+.event-grid {
+  margin-top: -20px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Tres columnas de igual tamaño */
+  gap: 20px; /* Espacio entre las tarjetas */
+  padding: 20px;
+}
+
+.event-card {
+  background-color: #2c2733; /* Fondo claro para las tarjetas */
+  border: 1px solid #ddd; /* Borde gris claro */
+  padding: 20px; /* Espaciado interno */
+  border-radius: 5px; /* Bordes redondeados */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+}

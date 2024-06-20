@@ -21,6 +21,7 @@ export class ArtistapageComponent implements OnInit{
   newPlaylistImage: string = '';
   userId: number = parseInt(localStorage.getItem('profile') || '0'); // ID del usuario actual
   listaEditada: any | null = null;
+  eventos: any[] = [];
 
   constructor(private route: ActivatedRoute,
               private http: HttpClient,
@@ -32,7 +33,8 @@ export class ArtistapageComponent implements OnInit{
       this.getArtistSongs(this.artistaId);
       this.getArtistData(this.artistaId);
       this.getArtistsAlbums(this.artistaId);
-      this.loadPlaylists()
+      this.loadPlaylists();
+      this.loadEvents()
     })
   }
 
@@ -169,5 +171,16 @@ export class ArtistapageComponent implements OnInit{
 
     // Devolver el resultado en formato "mm:ss"
     return minutosFormateados + ':' + segundosFormateados;
+  }
+
+  loadEvents() {
+    this.http.get<any[]>(`http://localhost:8080/evento/${this.artistaId}`).subscribe(
+      eventos => {
+        this.eventos = eventos;
+      },
+      error => {
+        console.error('Error al cargar las playlists:', error);
+      }
+    );
   }
 }

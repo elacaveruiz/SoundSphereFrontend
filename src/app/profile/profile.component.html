@@ -13,7 +13,7 @@
 
       </div>
 
-      <div class="playlists">
+      <div class="playlists" *ngIf="listas && listas.length > 0">
         <h2>Playlists de {{userData.nombre}}</h2>
         <div class="lista-grid">
           <div class="lista" *ngFor="let lista of listas">
@@ -24,7 +24,7 @@
       </div>
 
 
-      <div class="fav-artista">
+      <div class="fav-artista" *ngIf="artistasFav && artistasFav.length > 0">
         <h2>Artistas favoritos de {{userData.nombre}}</h2>
         <div class="artista-grid" [style.gridTemplateColumns]="'repeat(auto-fill, minmax(200px, 1fr))'">
           <div class="artista" *ngFor="let artista of artistasFav">
@@ -35,7 +35,7 @@
         </div>
       </div>
 
-      <div class="last-songs">
+      <div class="last-songs" *ngIf="canciones && canciones.length > 0">
         <h2>Últimas canciones reproducidas</h2>
       </div>
       <div class="canciones">
@@ -53,7 +53,6 @@
             <p>{{ convertirSegundosAMinutos(cancion.duracion) }}</p>
             <div class="song-buttons">
               <img src="assets/images/play.png" class="icon" (click)="sendSong(cancion)">
-              <img src="assets/images/nolike.png" class="icon">
               <img src="assets/images/settings.png" class="icon" (click)="openAddPlaylistDropdown(cancion.id)">
             </div>
           </div>
