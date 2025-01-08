@@ -1,5 +1,7 @@
 # SoundSphereFront
 
+Este proyecto se basa en una aplicación web para escuchar música en streaming, con una interfaz inspirada en la aplicación Spotify.
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.3.
 
 ## Development server
